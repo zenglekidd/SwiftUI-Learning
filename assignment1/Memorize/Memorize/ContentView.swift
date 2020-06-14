@@ -15,11 +15,14 @@ struct ContentView: View {
         HStack {
             ForEach(game.cards) { card in
                 CardView(card: card)
+                    .onTapGesture {
+                        self.game.choose(card: card)
+                }
             }
-            .padding()
-            .foregroundColor(.orange)
-            .font(.largeTitle)
         }
+        .padding()
+        .foregroundColor(.orange)
+        .font(.largeTitle)
     }
 }
 
