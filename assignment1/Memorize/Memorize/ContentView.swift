@@ -16,6 +16,9 @@ struct ContentView: View {
             ForEach(game.cards) { card in
                 CardView(card: card)
             }
+            .padding()
+            .foregroundColor(.orange)
+            .font(.largeTitle)
         }
     }
 }
@@ -29,11 +32,11 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: 10.0)
                     .fill(Color.white)
                 RoundedRectangle(cornerRadius: 10.0)
-                    .stroke(Color.black)
+                    .stroke(lineWidth: 3)
                 Text(card.content)
             } else {
                 RoundedRectangle(cornerRadius: 10.0)
-                    .fill(Color.orange)
+                    .fill()
             }
 
         }
