@@ -11,9 +11,11 @@ import Foundation
 struct EmojiMemoryGame {
     private var game: MemoryGame<String> {
         
-        let emojis = ["🛺","✈️","⛵️","🚢"]
+        let emojis = ["🛺","✈️","⛵️","🚢", "🏖"]
         
-        var game = MemoryGame(numberOfPairs: emojis.count) { index in
+        let numberOfPairs = Int.random(in: 2 ... emojis.count)
+        
+        var game = MemoryGame(numberOfPairs: numberOfPairs) { index in
             emojis[index]
         }
         game.shuffleCards()
