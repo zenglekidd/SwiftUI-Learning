@@ -37,7 +37,7 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: 10.0)
                     .stroke(lineWidth: 3)
                 Text(card.content)
-                    .scaledToFill()
+                    .scaledToFit()
                     .minimumScaleFactor(0.5)
             } else {
                 RoundedRectangle(cornerRadius: 10.0)
