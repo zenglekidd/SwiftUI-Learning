@@ -49,13 +49,15 @@ struct CardView: View {
     }
 }
 
-
-
-
-
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+            
+            ContentView()
+                .previewLayout(PreviewLayout.fixed(width: 568, height: 320))
+                .previewDisplayName("landscape")
+        }
+        
     }
 }
