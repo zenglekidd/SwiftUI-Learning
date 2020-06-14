@@ -24,6 +24,10 @@ struct MemoryGame<CardContent> {
         }
     }
     
+    mutating func shuffleCards() {
+        self.cards.shuffle()
+    }
+    
     struct Card: Identifiable {
         var isFaceUp = true
         var isMatched = false
