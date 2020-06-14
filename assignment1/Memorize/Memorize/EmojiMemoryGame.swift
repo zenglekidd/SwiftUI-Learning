@@ -13,7 +13,8 @@ struct EmojiMemoryGame {
         
         let emojis = ["🛺","✈️","⛵️","🚢", "🏖"]
         
-        let numberOfPairs = Int.random(in: 2 ... emojis.count)
+//        let numberOfPairs = Int.random(in: 2 ... emojis.count)
+        let numberOfPairs = 5
         
         var game = MemoryGame(numberOfPairs: numberOfPairs) { index in
             emojis[index]
