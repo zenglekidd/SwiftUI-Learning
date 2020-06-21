@@ -16,7 +16,10 @@ struct ContentView: View {
             ForEach(game.cards) { card in
                 CardView(card: card)
                     .onTapGesture {
-                        self.game.choose(card: card)
+                        if card.isMatched == false {
+                            self.game.choose(card: card)
+                        }
+                        
                 }
             }
         }

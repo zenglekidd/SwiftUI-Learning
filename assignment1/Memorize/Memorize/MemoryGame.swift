@@ -8,17 +8,43 @@
 
 import Foundation
 
+extension Array where Element: Identifiable {
+    func first(element: Element) -> Int? {
+        return self.firstIndex { $0.id == element.id }
+    }
+}
+
 struct MemoryGame<CardContent: Equatable> {
     private(set) var cards: [Card]
     
+    var oneAndOnlyFaceUpCardIndex: Int?
+    
     mutating func chose(_ card: Card) {
         // Find the card. Turn it face up or down
-        let index = cards.firstIndex { $0.id == card.id }
-        guard let currentIndex = index else { return }
+        
+        guard let currentIndex = cards.first(element: card), !cards[currentIndex].isMatched else { return }
         
         cards[currentIndex].isFaceUp = !cards[currentIndex].isFaceUp
-        
         print("card choosed: \(cards[currentIndex])")
+        
+        if oneAndOnlyFaceUpCardIndex == nil {
+            oneAndOnlyFaceUpCardIndex = currentIndex
+        } else {
+            if cards[oneAndOnlyFaceUpCardIndex!].content == cards[currentIndex].content {
+                // matched
+                cards[oneAndOnlyFaceUpCardIndex!].isMatched = true
+                cards[currentIndex].isMatched = true
+                
+                oneAndOnlyFaceUpCardIndex = nil
+            } else {
+                cards[oneAndOnlyFaceUpCardIndex!].isFaceUp = false
+
+                oneAndOnlyFaceUpCardIndex = currentIndex
+            }
+        }
+        
+        
+        
     }
     
     init(numberOfPairs: Int, cardContentFactory: (Int) -> CardContent) {
