@@ -12,8 +12,7 @@ class EmojiMemoryGame: ObservableObject {
     
     @Published var game: MemoryGame<String> = {
         let emojis = EmojiMemoryGame.getRandomEmojis()
-//        let numberOfPairs = Int.random(in: 2 ... 5)
-        let numberOfPairs = 2
+        let numberOfPairs = Int.random(in: 2 ... 5)
         
         var game = MemoryGame(numberOfPairs: numberOfPairs) { index in
             emojis[index]
