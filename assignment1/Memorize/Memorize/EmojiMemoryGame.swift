@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EmojiMemoryGame {
+class EmojiMemoryGame: ObservableObject {
     
     var game: MemoryGame<String> {
         let emojis = getRandomEmojis()
