@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    var game: EmojiMemoryGame = EmojiMemoryGame()
+    @ObservedObject var game: EmojiMemoryGame = EmojiMemoryGame()
     
     var body: some View {
         HStack {

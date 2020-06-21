@@ -10,8 +10,8 @@ import Foundation
 
 class EmojiMemoryGame: ObservableObject {
     
-    var game: MemoryGame<String> {
-        let emojis = getRandomEmojis()
+    @Published var game: MemoryGame<String> = {
+        let emojis = EmojiMemoryGame.getRandomEmojis()
         let numberOfPairs = Int.random(in: 2 ... 5)
         
         var game = MemoryGame(numberOfPairs: numberOfPairs) { index in
@@ -20,7 +20,7 @@ class EmojiMemoryGame: ObservableObject {
         game.shuffleCards()
         
         return game
-    }
+    }()
     
     var cards: [MemoryGame<String>.Card] {
         game.cards
@@ -31,7 +31,7 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     // Mark : - Private
-    fileprivate func getRandomEmojis() -> [String] {
+    fileprivate static func getRandomEmojis() -> [String] {
         var emojis: [String] = []
         let emojiRanges = [
             0x1F601...0x1F64F,

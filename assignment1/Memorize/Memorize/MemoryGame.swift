@@ -8,11 +8,17 @@
 
 import Foundation
 
-struct MemoryGame<CardContent> {
+struct MemoryGame<CardContent: Equatable> {
     private(set) var cards: [Card]
     
-    func chose(_ card: Card) {
-        print("card choosed: \(card)")
+    mutating func chose(_ card: Card) {
+        // Find the card. Turn it face up or down
+        let index = cards.firstIndex { $0.id == card.id }
+        guard let currentIndex = index else { return }
+        
+        cards[currentIndex].isFaceUp = !cards[currentIndex].isFaceUp
+        
+        print("card choosed: \(cards[currentIndex])")
     }
     
     init(numberOfPairs: Int, cardContentFactory: (Int) -> CardContent) {
